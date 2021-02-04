@@ -4,7 +4,7 @@
     "parameters": {
         "resourcePrefix": {
             "type": "string",
-            "defaultValue": "jfk",
+            "defaultValue": "meps",
             "metadata": {
                 "description": "Prefix for all resources created by this template"
             }
@@ -89,14 +89,14 @@
         },
         "repoURL": {
             "type": "string",
-            "defaultValue": "https://github.com/Microsoft/AzureSearch_JFK_Files",
+            "defaultValue": "https://github.com/futurafric-ia/meps-1",
             "metadata": {
                 "description": "The URL for the GitHub repository that contains the project to deploy."
             }
         },
         "branch": {
             "type": "string",
-            "defaultValue": "master",
+            "defaultValue": "main",
             "metadata": {
                 "description": "The branch of the GitHub repository to use."
             }

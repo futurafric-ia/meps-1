@@ -58,7 +58,7 @@ export const jfkServiceConfig: ServiceConfig = {
     facetCollection: [
       {
         fieldId: "entities",
-        displayName: "Entities",
+        displayName: "Entités",
         iconName: null,
         selectionControl: "checkboxList",
         values: null,

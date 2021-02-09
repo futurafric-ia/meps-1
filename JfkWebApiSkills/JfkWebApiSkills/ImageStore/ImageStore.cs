@@ -12,7 +12,15 @@ namespace Microsoft.CognitiveSearch.Skills.Image
 
         public ImageStore(string blobConnectionString, string containerName)
         {
+            Console.WriteLine("Connection string: {0}", blobConnectionString);
+            Console.WriteLine("Container Connection string: {0}", containerName);
+            Console.WriteLine("library Connection string: {0}", libraryContainer);
+
+
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(blobConnectionString);
+            Console.WriteLine("Connection string: {0}", blobConnectionString);
+            Console.WriteLine("Storage account: {0}", storageAccount.ToString());
+
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
             libraryContainer = blobClient.GetContainerReference(containerName);
         }

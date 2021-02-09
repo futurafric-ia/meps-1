@@ -19,7 +19,7 @@ namespace Microsoft.CognitiveSearch.WebApiSkills
     public static class JfkWebApiSkills
     {
         [FunctionName("facet-graph-nodes")]
-        public static IActionResult GetFacetGraphNodes([HttpTrigger(AuthorizationLevel.Function, "get", Route = null)]HttpRequest req, TraceWriter log, ExecutionContext executionContext)
+        public static IActionResult GetFacetGraphNodes([HttpTrigger(AuthorizationLevel.Function, "post", Route = null)]HttpRequest req, TraceWriter log, ExecutionContext executionContext)
         {
             string skillName = executionContext.FunctionName;
             if (!req.QueryString.HasValue)

@@ -231,8 +231,11 @@ namespace JfkInitializer
             Console.WriteLine("Creating Indexer...");
             try
             {
+                Console.WriteLine("Creating Indexer try...");
                 Indexer indexer = SearchResources.GetIndexer(IndexerName, DataSourceName, IndexName, SkillsetName);
+                Console.WriteLine("Creating Indexer try 2...");
                 await _searchClient.Indexers.CreateAsync(indexer);
+                Console.WriteLine("Creating Indexer try 3...");
             }
             catch (Exception ex)
             {
@@ -335,10 +338,12 @@ namespace JfkInitializer
                 {
                     Thread.Sleep(3000);
                     IndexerExecutionInfo info = await _searchClient.Indexers.GetStatusAsync(IndexerName);
+
                     requestStatus = info.LastResult.Status;
                     if (DebugMode)
                     {
                         Console.WriteLine("Current indexer status: {0}", requestStatus.ToString());
+                        Console.WriteLine("Error message: {0}", info.LastResult.ErrorMessage);
                     }
                 }
             }

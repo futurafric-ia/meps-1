@@ -21,10 +21,10 @@ interface DrawerBarProps {
 const DrawerBarCaption = () => (
   <div className={style.caption}>
     <p className={style.title} color="inherit">
-      Documents revealed.
+    Documents révélés.
     </p>
     <p className={style.subtitle} color="inherit">
-      Let's find out what happened that day.
+    Retrouvez facilement ce que vous cherchez.
     </p>
   </div>
 );

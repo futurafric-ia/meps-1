@@ -1,5 +1,5 @@
 import * as React from "react";
-import { withRouter, RouteComponentProps } from 'react-router';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { DetailPageComponent } from "./detail-page.component";
 import { DetailRouteState } from "./detail-page.route";
 import { searchPath } from "../search-page";

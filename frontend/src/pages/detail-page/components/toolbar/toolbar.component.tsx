@@ -63,7 +63,7 @@ const ToggleViewButton = ({ onClick }) => (
     color="inherit"
     onClick={onClick}
   >
-    Toggle View
+    Changer de vue
   </Button>
 );
 

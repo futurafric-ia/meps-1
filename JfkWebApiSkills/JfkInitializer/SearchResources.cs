@@ -37,6 +37,21 @@ namespace JfkInitializer
                             new OutputFieldMappingEntry(name: "layoutText")
                         }
                     },
+                     new SentimentSkill()
+                    {
+                        Context = "/document/normalized_images/*",
+                        DefaultLanguageCode = Fr,
+                        Inputs = new List<InputFieldMappingEntry>()
+                        {
+                            new InputFieldMappingEntry(name: "text", source: "/document/normalized_images/*/text")
+                            new InputFieldMappingEntry(name: "language", source: "/document/normalized_images/*/Description/captions/*/text")
+                        },
+                        Outputs = new List<OutputFieldMappingEntry>()
+                        {
+                            new OutputFieldMappingEntry(name: "score"),
+                            new OutputFieldMappingEntry(name: "score")
+                        }
+                    },
                     new ImageAnalysisSkill()
                     {
                         Context = "/document/normalized_images/*",
@@ -99,7 +114,7 @@ namespace JfkInitializer
                     new SplitSkill()
                     {
                         Description = "Split text into pages for subsequent skill processing",
-                        Context = "/document/finalText",
+                        Context = "/document/finalText",  
                         TextSplitMode = TextSplitMode.Pages,
                         MaximumPageLength = 5000,
                         Inputs = new List<InputFieldMappingEntry>()
@@ -226,13 +241,14 @@ namespace JfkInitializer
             Fields = new List<Field>()
             {
                 new Field("id",              DataType.String)                      { IsSearchable = true,  IsFilterable = true,  IsRetrievable = true, IsSortable = true,  IsFacetable = false, IsKey = true },
-                new Field("fileName",        DataType.String)                      { IsSearchable = false, IsFilterable = false, IsRetrievable = true, IsSortable = false, IsFacetable = false },
+                new Field("fileName",        DataType.String)                      { IsSearchable = true, IsFilterable = true, IsRetrievable = true, IsSortable = false, IsFacetable = false },
                 new Field("metadata",        DataType.String)                      { IsSearchable = false, IsFilterable = false, IsRetrievable = true, IsSortable = false, IsFacetable = false },
                 new Field("text",            DataType.String)                      { IsSearchable = true,  IsFilterable = false, IsRetrievable = true, IsSortable = false, IsFacetable = false, SynonymMaps = new List<string>() { synonymMapName } },
                 new Field("entities",        DataType.Collection(DataType.String)) { IsSearchable = false, IsFilterable = true,  IsRetrievable = true, IsSortable = false, IsFacetable = true  },
                 new Field("cryptonyms",      DataType.Collection(DataType.String)) { IsSearchable = false, IsFilterable = true,  IsRetrievable = true, IsSortable = false, IsFacetable = true  },
                 new Field("demoBoost",       DataType.Int32)                       { IsSearchable = false, IsFilterable = true,  IsRetrievable = true, IsSortable = false, IsFacetable = false },
                 new Field("demoInitialPage", DataType.Int32)                       { IsSearchable = false, IsFilterable = false, IsRetrievable = true, IsSortable = false, IsFacetable = false },
+                new Field("score",           DataType.String)                      { IsSearchable = false, IsFilterable = true, IsRetrievable = true, IsSortable = false, IsFacetable = false },
             },
             ScoringProfiles = new List<ScoringProfile>()
             {
@@ -301,7 +317,8 @@ namespace JfkInitializer
                 new FieldMapping() { SourceFieldName = "/document/finalText",                          TargetFieldName = "text"       },
                 new FieldMapping() { SourceFieldName = "/document/hocrDocument/metadata",              TargetFieldName = "metadata"   },
                 new FieldMapping() { SourceFieldName = "/document/finalText/pages/*/entities/*/value", TargetFieldName = "entities"   },
-                new FieldMapping() { SourceFieldName = "/document/cryptonyms",                         TargetFieldName = "cryptonyms" }
+                new FieldMapping() { SourceFieldName = "/document/cryptonyms",                         TargetFieldName = "cryptonyms" },
+                new FieldMapping() { SourceFieldName = "/document/finalText",                         TargetFieldName = "score" }
             }
         };
     }
